@@ -34,6 +34,28 @@ def insert_sort(array):
         array[position] = current_value
 
 
+def quick_sort(array):
+    k = array[0]
+    left_flag = 0
+    right_flag = len(array) - 1
+
+
+    while left_flag <right_flag:
+        #右边小旗子移动
+        while array[right_flag] > k:
+            right_flag -= 1
+        temp = array[left_flag]
+        array[left_flag] = array[right_flag]
+        array[right_flag] = temp
+
+        #左边小旗子移动
+        while array[left_flag] < k:
+            right_flag += 1
+        temp = array[left_flag]
+        array[left_flag] = array[right_flag]
+        array[right_flag] = temp
+
+
 
 if __name__ == '__main__':
     array = [472, 923, 946, 546, 804, 285, 6, 230, 882, 390, 196, 609, 604, 19, 602, 638, 414, 118, 993, 581]
@@ -42,5 +64,5 @@ if __name__ == '__main__':
 
     print array
 
-    insert_sort(array)
+    quick_sort(array)
     print array

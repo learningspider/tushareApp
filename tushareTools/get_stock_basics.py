@@ -80,5 +80,14 @@ def get_latest_news():
     latest_news = ts.get_latest_news(top=30, show_content=True)  # 显示最新5条新闻，并打印出新闻内容
     return latest_news
 
+#大单交易数据
+def get_sina_dd():
+    df = ts.get_sina_dd('600848', date='2016-12-09')
+    grouped = df.groupby(df['type'])
+    groupedSum = grouped.sum()
+    a = groupedSum.iloc[0:1,:]
+    return a
+
+
 if __name__ == '__main__':
     get_stock()

@@ -86,6 +86,12 @@ def get_sina_dd():
     grouped = df.groupby(df['type'])
     groupedSum = grouped.sum()
     a = groupedSum.iloc[0:1,:]
+    buy = groupedSum[1,2] if groupedSum[1,1]=='买盘' else groupedSum[2,2]
+    print df
+    print grouped
+    print groupedSum
+    print a
+    print buy
     return a
 
 

@@ -75,5 +75,25 @@ def MovingAverage():
     # ========== 将算好的数据输出到csv文件 - 注意：这里请填写输出文件在您电脑中的路径
     stock_data.to_csv('sh600000_ma_ema.csv', index=False)
 
+#即时新闻
+def get_latest_news():
+    latest_news = ts.get_latest_news(top=30, show_content=True)  # 显示最新5条新闻，并打印出新闻内容
+    return latest_news
+
+#大单交易数据
+def get_sina_dd():
+    df = ts.get_sina_dd('600848', date='2016-12-09')
+    grouped = df.groupby(df['type'])
+    groupedSum = grouped.sum()
+    a = groupedSum.iloc[0:1,:]
+    buy = groupedSum[1,2] if groupedSum[1,1]=='买盘' else groupedSum[2,2]
+    print df
+    print grouped
+    print groupedSum
+    print a
+    print buy
+    return a
+
+
 if __name__ == '__main__':
     get_stock()

@@ -6,8 +6,8 @@ Created on 2016/11/25
 @group : Spider
 @contact: 1161192890@qq.com
 """
-import random
-
+import random,sys
+#sys.setrecursionlimit(15000)
 def tSort(array):
     for i in range(len(array)):
         for j in range(i+1,len(array)):
@@ -34,35 +34,38 @@ def insert_sort(array):
         array[position] = current_value
 
 
-def quick_sort(array):
-    k = array[0]
-    left_flag = 0
-    right_flag = len(array) - 1
+def quick_sort(array,start,end):
+    if start >= end:
+        return
+    k = array[start]
+    left_flag = start
+    right_flag = end
 
 
     while left_flag <right_flag:
         #右边小旗子移动
-        while array[right_flag] > k:
+        while left_flag<right_flag and array[right_flag] > k:
             right_flag -= 1
         temp = array[left_flag]
         array[left_flag] = array[right_flag]
         array[right_flag] = temp
 
         #左边小旗子移动
-        while array[left_flag] < k:
-            right_flag += 1
+        while left_flag<right_flag and array[left_flag] <= k:
+            left_flag += 1
         temp = array[left_flag]
         array[left_flag] = array[right_flag]
         array[right_flag] = temp
-
+    quick_sort(array,start,left_flag-1)
+    quick_sort(array,left_flag+1,end)
 
 
 if __name__ == '__main__':
-    array = [472, 923, 946, 546, 804, 285, 6, 230, 882, 390, 196, 609, 604, 19, 602, 638, 414, 118, 993, 581]
-    ''' i in range(20):
+    array = [64,77,67,8,6,84,55,20,43,67]
+    '''for i in range(1000):
         array.append(random.randrange(1000))'''
 
     print array
 
-    quick_sort(array)
+    quick_sort(array,0,len(array)-1)
     print array

@@ -59,6 +59,35 @@ def quick_sort(array,start,end):
     quick_sort(array,start,left_flag-1)
     quick_sort(array,left_flag+1,end)
 
+def heap_adjust(array,heap_index):
+    left_child = heap_index *2
+    right_child = left_child +1
+    node = array[heap_index - 1]
+    while True:
+        if right_child > len(array):
+            break
+        if array[left_child-1] > node:
+            tmp = array[left_child-1]
+            array[left_child-1] = node
+            array[heap_index - 1] = tmp
+
+        elif array[right_child-1] > node:
+            tmp = array[right_child-1]
+            array[right_child-1] = node
+            array[heap_index - 1] = tmp
+        else:
+            break
+
+
+
+def heap_sort(array):
+    i = int(len(array) / 2)
+    for heap_index in range(i,0,-1):
+        print heap_index
+        heap_adjust(array,heap_index)
+
+
+
 
 if __name__ == '__main__':
     array = [64,77,67,8,6,84,55,20,43,67]
@@ -67,5 +96,6 @@ if __name__ == '__main__':
 
     print array
 
-    quick_sort(array,0,len(array)-1)
+    #quick_sort(array,0,len(array)-1)
+    heap_sort(array)
     print array

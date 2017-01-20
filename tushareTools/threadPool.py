@@ -9,7 +9,7 @@ Created on 2017/1/2
 
 import contextlib,threading
 from Queue import Queue
-import twisted.python.threadpool
+#import twisted.python.threadpool
 
 workerStop = object()
 
@@ -86,20 +86,21 @@ class ThreadPool():
 
 
 
-def onResult(status, result):
-    # status, execute action status
-    # result, execute action return value
-    pass
+if __name__ == '__main__':
+    def onResult(status, result):
+        # status, execute action status
+        # result, execute action return value
+        pass
 
-def show(arg):
-    import time
-    time.sleep(1)
-    print arg
+    def show(arg):
+        import time
+        time.sleep(1)
+        print arg
 
-pool = ThreadPool(20)
+    pool = ThreadPool(20)
 
-for i in range(500):
-    pool.callInThread(show,i)
+    for i in range(500):
+        pool.callInThread(show,i)
 
-pool.start()
-pool.stop()
+    pool.start()
+    pool.stop()

@@ -5,6 +5,15 @@ Created on 2017/01/20
 @author: Chao Zhou
 @group : Spider
 @contact: 1161192890@qq.com
+
+暴力破解linux shadow密码文件获得加密密码
+1、环境
+   kail linux   python2.7.13
+2、原理
+   linux密码shadow文件的加密方式为 salt+加密后密码
+   python的crypt函数
+   字典文件需自己编写
+3、多线程编程实现
 """
 
 import re,threading,platform

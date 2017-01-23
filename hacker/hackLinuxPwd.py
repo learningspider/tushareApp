@@ -37,7 +37,7 @@ class hackLinuxPW():
         with open(self.dictFile) as f:
             for line in f:
                 line = line.strip('\n')
-                t = threading.Thread(target=self.comparePass(),args=(self,line))
+                t = threading.Thread(target=self.comparePass(line))
                 t.start()
 
 

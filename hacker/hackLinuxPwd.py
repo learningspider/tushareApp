@@ -52,11 +52,21 @@ class hackLinuxPW():
 
         print "[-]Password not found.\n"
 
-
-
-
-
-
+def main(self):
+    import optparse
+    parser = optparse.OptionParser('usage%prog '+'-f <passfile> -u <user> -p <ecryptPass>')
+    parser.add_option('-f',dest='passfile',type='string',help='dictionary file')
+    parser.add_option('-u',dest='user',type='string',help='user name')
+    parser.add_option('-p',dest='ecryptPass',type='string',help='ecrypted password')
+    (options,args) = parser.parse_args()
+    if (options.passfile == None) | (options.user == None) |(options.ecryptPass == None):
+        print parser.usage
+        exit(0)
+    else:
+        passfile = options.passfile
+        user = options.user
+        ectyptPass = options.ecryptPass
+    hackLinuxPW(passfile, user,ectyptPass)
 
 if __name__ == '__main__':
-    hackLinuxPW(r'/tmp/mima','root','$6$HqfT0spQ$S4I6WjbP0DCg3OrtSqUuBTWIGA7/BsVg1G9svm2sEHE/bdO03lOqk/6O4J0BFCi5.vLgDnVZBiFchzUdZojQt/')
+    main()
